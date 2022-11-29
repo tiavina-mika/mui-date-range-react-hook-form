@@ -4,13 +4,13 @@ import {
   Container,
   FormControl,
   FormLabel,
-  Typography
+  Typography,
+  Stack
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import DateRangeInput from "./DateRangeInput";
-import dayjs from "dayjs";
 
 const schema = z.object({
   birthday: z.array(z.date().optional())
@@ -21,7 +21,7 @@ const Form = () => {
     control,
     formState: { errors },
     handleSubmit,
-    setError
+    reset
   } = useForm({
     resolver: zodResolver(schema)
   });
@@ -45,24 +45,24 @@ const Form = () => {
               <Controller
                 name="birthday"
                 control={control}
-                render={({ field: { onChange, value } }) => {
-                  if (
-                    value &&
-                    value[0] &&
-                    value[1] &&
-                    dayjs(value[1]).isBefore(value[0])
-                  ) {
-                    setError("birthday", { message: "Hello" });
-                  }
-                  return <DateRangeInput onChange={onChange} value={value} />;
-                }}
+                render={({ field: { onChange, value } }) => (
+                  <DateRangeInput
+                    onChange={onChange}
+                    value={value}
+                    variant="outlined"
+                    separator="to"
+                  />
+                )}
               />
             </FormControl>
-            <Box>
+            <Stack direction="row" spacing={2} sx={{ mt: 1 }}>
               <Button type="submit" variant="contained">
                 Submit
               </Button>
-            </Box>
+              <Button type="button" onClick={reset}>
+                Reset
+              </Button>
+            </Stack>
           </Box>
         </form>
         <Box sx={{ display: "flex", justifyContent: "center" }}>
