@@ -40,6 +40,7 @@ const DateRangeInput = ({
       <Stack>
         <Stack direction="row" spacing={2} alignItems="center">
           <DesktopDatePicker
+            label="Start"
             inputFormat={inputFormat}
             value={value[0]}
             onChange={(date) => {
@@ -70,6 +71,7 @@ const DateRangeInput = ({
           />
           {separator && <Typography>{separator}</Typography>}
           <DesktopDatePicker
+            label="End"
             inputFormat={inputFormat}
             value={value[1]}
             onChange={(date) => {

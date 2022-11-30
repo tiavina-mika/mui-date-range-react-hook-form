@@ -41,7 +41,9 @@ const Form = () => {
         <form onSubmit={handleSubmit(customSubmit)}>
           <Box sx={{ display: "flex", flexDirection: "column" }}>
             <FormControl component="fieldset" error={!!errors?.birthday}>
-              <FormLabel component="legend">Birthday</FormLabel>
+              <FormLabel component="legend" sx={{ mb: 1 }}>
+                Birthday
+              </FormLabel>
               <Controller
                 name="birthday"
                 control={control}
