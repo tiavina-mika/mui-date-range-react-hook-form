@@ -26,7 +26,7 @@ const Form = () => {
     resolver: zodResolver(schema)
   });
 
-  const customSubmit = (data) => console.log(data);
+  const onSubmit = (values) => console.log(values);
 
   return (
     <Container maxWidth="xs">
@@ -38,7 +38,7 @@ const Form = () => {
           justifyContent: "space-between"
         }}
       >
-        <form onSubmit={handleSubmit(customSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Box sx={{ display: "flex", flexDirection: "column" }}>
             <FormControl component="fieldset" error={!!errors?.birthday}>
               <FormLabel component="legend" sx={{ mb: 1 }}>
